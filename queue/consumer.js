@@ -31,9 +31,9 @@ async function consume() {
       await fs.writeFile(`${fileName}.txt`, input)
 
       try {
-        const output = await runCode(`sh script.sh ${compiler} ${filePath} ${fileName}.txt`)
-        console.log(output)
-        await db.addToRedis(id, { ...output, isCompleted: true })
+        let result = await runCode(`sh script.sh ${compiler} ${filePath} ${fileName}.txt`)
+        await db.addToRedis(id,{id:id, output:result.stdout,error:result.stderr,isCompleted:true})
+        console.log(result)
       } catch (error) {
         console.log("Error while running",error);
       }finally{

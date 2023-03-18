@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  redis:
+    image: redis
+    container_name: redis
+  queue:
+    image: rabbitmq
+    container_name: queue
+  app:
+    container_name: app
+    build: ./rce
+    ports:
+      - 3000:3000
+    volumes:
+      - ./rce:/usr/home/app/
+  worker:
+    container_name: worker
+    build: ./queue
+    restart: always
+    depends_on:
+      queue:
+        condition: service_started
+        

@@ -10,7 +10,7 @@ import useCodeRunner from '@/hooks/useCodeRunner'
 
 
 export default function Home() {
-   const [formData, setFormData] = useState({ code: "", input: "", language: "c++" })
+   const [formData, setFormData] = useState({ code: "", input: "", language: "cpp" })
    const [output,runCode,runningStatus] = useCodeRunner()
    function handleChange(e: React.ChangeEvent<HTMLTextAreaElement| HTMLSelectElement>) {
       const key = e.target.name

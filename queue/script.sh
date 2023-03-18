@@ -7,16 +7,16 @@ if [ "$compiler" = "g++" ]
 then
     if   $(g++ -o $outputfile $filename)
     then
-        timeout 4 ./$outputfile < $inputfile
+        ./$outputfile < $inputfile
     fi
 exit
 elif [ "$compiler" = "javac" ]
 then
     if $(javac $filename) 
     then
-        timeout 4 java Main < $inputfile
+        java Main < $inputfile
     fi
     exit
 fi
 
-timeout 4 $compiler $filename < $inputfile
+$compiler $filename < $inputfile

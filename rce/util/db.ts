@@ -37,6 +37,7 @@ export const getData = async (key: string): Promise<QueueResponse> => {
     try {
         await client.connect()
         const data = await client.get(key)
+        await client.quit()
         if (data)
             return JSON.parse(data)
         else
@@ -45,9 +46,6 @@ export const getData = async (key: string): Promise<QueueResponse> => {
     } catch (error) {
         console.log(error);
         return {...kQueueResponse, error: "Error occurred" }
-
-    } finally {
-        await client.quit()
     }
 }
 

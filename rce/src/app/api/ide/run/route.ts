@@ -12,7 +12,7 @@ export async function GET(request: Request) {
     return NextResponse.json({message:"Query parameter id not found"},{status:400})
   }
   const data = await getData(id)
-  return NextResponse.json({data})
+  return NextResponse.json(data)
 }
 
 
