@@ -1,0 +1,16 @@
+.textarea{
+    
+    border:2px solid #2c1446
+}
+
+
+.box_container{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    gap: 0.3rem;
+}
+
+.output textarea{
+    border: solid 2px #E5D1FA;
+}

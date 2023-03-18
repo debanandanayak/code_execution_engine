@@ -1,0 +1,14 @@
+.left{
+  background-color: red;
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right{
+  background-color: blue;
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+}

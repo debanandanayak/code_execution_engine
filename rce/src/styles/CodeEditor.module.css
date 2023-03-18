@@ -1,0 +1,24 @@
+.action {
+  padding: 0.5em 0.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background-color: #c38bff;
+  gap: 2em;
+}
+
+.run ,.combo_box{
+  padding: 0.5rem 3rem;
+  background-color: #FFF4D2;
+  color: #1e1f16;
+  border: 2px solid #9234df;
+  border-radius: 1px;
+  cursor: pointer;
+  font-weight: bold;
+  outline: none;
+}
+
+.combo_box{
+    padding: 0.5rem 1rem;
+}
