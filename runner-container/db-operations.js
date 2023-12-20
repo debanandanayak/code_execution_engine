@@ -1,6 +1,6 @@
 
 const {createClient} = require("redis")
-
+console.log("redis");
 
 const client = createClient({ url: "redis://redis:6379" })
 
@@ -15,11 +15,9 @@ const addToRedis = async (key, value) => {
     try {
         await client.connect()
         await client.setEx(key, 20, JSON.stringify(value))
-        
+        await client.quit()
     } catch (error) {
         console.log(error)
-    }finally{
-        await client.quit()
     }
 }
 
@@ -27,19 +25,17 @@ const getData = async (key) => {
     try {
         await client.connect()
         const data = await client.get(key)
-        // await client.quit()
+        await client.quit()
         return data
         
     } catch (error) {
         console.log(error);
+        return {error:"Error occurred"}
         
-    }finally{
-        await client.quit()
     }
-    return {error:"Error occurred"}
 }
 
 
-module.exports = {getData, addToRedis,client}
+module.exports = {getData, addToRedis}
 
 

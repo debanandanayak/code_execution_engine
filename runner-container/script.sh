@@ -19,4 +19,4 @@ then
     exit
 fi
 
-timeout 10 $compiler $filename < $inputfile
+$compiler $filename < $inputfile

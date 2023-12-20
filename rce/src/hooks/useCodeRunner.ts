@@ -23,7 +23,8 @@ function useCodeRunner():[Output,(f:FormData)=>Promise<void>,boolean] {
 
   async function postData(formData:FormData) {
     setRunningStatus(true)
-    const data = await fetch("/api/ide/run/", {
+    setOutput(initialOutput)
+    const data = await fetch("/api/ide/run", {
       method: "POST",
       body: JSON.stringify(formData),
     })
@@ -35,7 +36,7 @@ function useCodeRunner():[Output,(f:FormData)=>Promise<void>,boolean] {
 
   async function getOutput(id:string) {
 
-    const url = `/api/ide/run/?id=${id}`
+    const url = `/api/ide/run?id=${id}`
     let tryCount = 0
     let intervalId = setInterval( async () => {
       console.log("Calling for output")

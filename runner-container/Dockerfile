@@ -2,13 +2,10 @@ FROM node:alpine
 RUN apk add build-base
 RUN apk add --update python3 py3-pip
 RUN apk add openjdk11
-WORKDIR /usr/home/worker
+WORKDIR /usr/home/node1
 COPY package.json .
 
 RUN npm install
-RUN mkdir temp
-RUN chmod 755 -R temp/
-RUN adduser -D -g "" judge
-COPY . .
-CMD [ "npm", "run", "start" ]
 
+COPY . .
+# CMD [ "npm", "run", "start" ]

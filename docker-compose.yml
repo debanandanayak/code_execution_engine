@@ -22,4 +22,6 @@ services:
     depends_on:
       queue:
         condition: service_started
+      redis:
+        condition: service_started
         

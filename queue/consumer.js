@@ -26,12 +26,12 @@ async function consume() {
       const ext = sourceCodeInfo.extension
       const input = sourceCodeInfo.input
       const compiler = sourceCodeInfo.compiler
-      const filePath = `${fileName}${ext}`
+      const filePath = `./temp/${fileName}${ext}`
       await fs.writeFile(filePath, code)
-      await fs.writeFile(`${fileName}.txt`, input)
+      await fs.writeFile(`./temp/${fileName}.txt`, input)
 
       try {
-        let result = await runCode(`sh script.sh ${compiler} ${filePath} ${fileName}.txt`)
+        let result = await runCode(`sh script.sh ${compiler} ${filePath} ./temp/${fileName}.txt`)
         await db.addToRedis(id,{id:id, output:result.stdout,error:result.stderr,isCompleted:true})
         console.log(result)
       } catch (error) {
