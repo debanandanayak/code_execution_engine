@@ -13,10 +13,15 @@ export default function Home() {
    const [formData, setFormData] = useState({ code: "", input: "", language: "cpp" })
    const [output,runCode,runningStatus] = useCodeRunner()
    function handleChange(e: React.ChangeEvent<HTMLTextAreaElement| HTMLSelectElement>) {
-      const key = e.target.name
-      const val = e.target.value
-
-      setFormData({ ...formData, [key]: val })
+      if(typeof e =='string')
+         setFormData({ ...formData, code: e })
+      else{
+         const key = e.target.name
+         const val = e.target.value
+         console.log(key,val);
+         
+         setFormData({ ...formData, [key]: val })
+      }
    }
    async function handleClick() {
       console.log(formData);

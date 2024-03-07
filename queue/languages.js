@@ -7,6 +7,10 @@ const languages = {
         compiler: "g++",
         extension: ".cpp"
     },
+    "c++": {
+        compiler: "g++",
+        extension: ".cpp"
+    },
     c: {
         compiler: "g++",
         extension: ".c"
@@ -18,6 +22,10 @@ const languages = {
     python: {
         compiler: "python",
         extension: ".py"
+    },
+    shell: {
+        compiler: "sh",
+        extension: ".sh"
     }
 }
 

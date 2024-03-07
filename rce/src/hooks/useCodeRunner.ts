@@ -53,7 +53,7 @@ function useCodeRunner():[Output,(f:FormData)=>Promise<void>,boolean] {
       }
       if(tryCount == 4 && jsonResponse.isCompleted == false){
         setRunningStatus(false)
-        setOutput({...initialOutput,isCompleted:false,error:"Run time error."})
+        setOutput({...initialOutput,isCompleted:false,error:"Something went wrong"})
         clearInterval(intervalId)
       }
     },1000)

@@ -11,21 +11,45 @@ client.on("error", () => {
 
 
 
+// const addToRedis = async (key, value) => {
+//     try {
+//         await client.connect()
+//         await client.setEx(key, 20, JSON.stringify(value))
+        
+//     } catch (error) {
+//         console.log(error)
+//     }finally{
+//         await client.quit()
+//     }
+// }
+
+// const getData = async (key) => {
+//     try {
+//         await client.connect()
+//         const data = await client.get(key)
+//         // await client.quit()
+//         return data
+        
+//     } catch (error) {
+//         console.log(error);
+        
+//     }finally{
+//         await client.quit()
+//     }
+//     return {error:"Error occurred"}
+// }
+
 const addToRedis = async (key, value) => {
     try {
-        await client.connect()
         await client.setEx(key, 20, JSON.stringify(value))
         
     } catch (error) {
         console.log(error)
-    }finally{
-        await client.quit()
     }
 }
 
 const getData = async (key) => {
     try {
-        await client.connect()
         const data = await client.get(key)
         // await client.quit()
         return data
@@ -33,13 +57,9 @@ const getData = async (key) => {
     } catch (error) {
         console.log(error);
         
-    }finally{
-        await client.quit()
     }
     return {error:"Error occurred"}
 }
-
-
 module.exports = {getData, addToRedis,client}
 
 

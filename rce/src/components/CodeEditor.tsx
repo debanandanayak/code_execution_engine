@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import styles from '../styles/CodeEditor.module.css'
-
+import { Editor } from '@monaco-editor/react'
 type CodeEditorProps = {
     height?:number | string,
     sourceCode?:string,
@@ -18,10 +18,12 @@ export default function CodeEditor({sourceCode,onClick,onChange,height,onSelectL
                     <option value="node">Node JS</option>
                     <option value="java">Java</option>
                     <option value="python">Python</option>
+                    <option value="shell">Shell</option>
                 </select>
                 <input type="button" className={styles.run} value="Run" onClick={onClick}/>
             </div>
-            <textarea style={{height}} name='code' value={sourceCode} onChange={onChange}></textarea>
+            <Editor value={sourceCode} onChange={onChange} height={height} language='shell' theme='dark' />
+            {/* <textarea style={{height}} name='code' value={sourceCode} onChange={onChange}></textarea> */}
         </div>
     )
 }

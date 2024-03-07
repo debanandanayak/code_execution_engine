@@ -4,10 +4,17 @@ const QUEUE_NAME = "CODE"
 const fs = require("fs/promises")
 
 const db = require("./db-operation")
+db.client.connect().then((val)=>{
+  console.log("redis connected");
+}).catch(()=>{
+  // process.exit(1)
+})
 const languages = require('./languages')
 async function consume() {
   try {
-    const connection = await mq.connect("amqp://queue:5672")
+    const connection = await mq.connect("amqp://queue:5672").catch(()=>{
+      process.exit(0)
+    })
     const channel = await connection.createChannel()
     channel.assertQueue(QUEUE_NAME)
     await channel.consume(QUEUE_NAME, async message => {
@@ -36,6 +43,7 @@ async function consume() {
         console.log(result)
       } catch (error) {
         console.log("Error while running",error);
+        await db.addToRedis(id,{id:id, output:'',error:error.stderr,isCompleted:true})
       }finally{
         await channel.ack(message)
       }
